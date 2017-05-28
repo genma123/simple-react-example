@@ -16,8 +16,7 @@ class App extends Component {
   }
 
   addSquare() {
-    let count = this.state.squares.length;
-    const square = { color: count % 2 === 0 ? "red" : "green", key: this.state.sequence };
+    const square = { color: this._input.value.toLowerCase(), key: this.state.sequence };
     this.setState({ squares: this.state.squares.concat(square),
                   sequence: this.state.sequence + 1});
   }
@@ -29,9 +28,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <button onClick={this.addSquare}>
+        <span><button onClick={this.addSquare}>
           Add a Square
-        </button>
+        </button></span><span><select ref={(el) => this._input = el}><option>Red</option>
+                                      <option>Blue</option>
+                                      <option>Green</option>
+                                      <option>Yellow</option>
+                              </select></span>
         <Grid squares={this.state.squares} deleteSquare={this.removeSquare} />
       </div>
     );
