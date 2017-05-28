@@ -18,7 +18,7 @@ class GridRow extends Component {
     };
 
     const squares = this.props.squares.map((square) =>
-        <Square key={square.key} id={square.key} title="A Square" styles={Object.assign({}, styles, {backgroundColor: square.color })} deleteSquare={this.props.deleteSquare} />);
+        <Square key={square.key} id={square.key} title={square.text} styles={Object.assign({}, styles, {backgroundColor: square.color })} deleteSquare={this.props.deleteSquare} />);
    
     return (
         <span className="GridRow">{squares}<br/></span>
