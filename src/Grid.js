@@ -10,7 +10,7 @@ class Grid extends Component {
 
   render() {
     const chunks = _.chunk(this.props.squares, 5);
-    const rows = chunks.map((chunk) => <GridRow squares={chunk}/>);
+    const rows = chunks.map((chunk, i) => <GridRow key={i} squares={chunk} deleteSquare={this.props.deleteSquare} />);
     return (
       <div className="Grid">{rows}</div>
     );

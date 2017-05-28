@@ -11,13 +11,14 @@ class GridRow extends Component {
     const styles = {
         color:'white',
         backgroundColor:'green',
-        padding:'50px 20px 50px 20px',
+        padding:'30px 20px 30px 20px',
         margin: "5px",
-        display:'inline-block'
+        display:'inline-block',
+        textAlign: 'right'
     };
 
     const squares = this.props.squares.map((square) =>
-        <Square styles={Object.assign({}, styles, {backgroundColor: square.color })} />);
+        <Square key={square.key} id={square.key} title="A Square" styles={Object.assign({}, styles, {backgroundColor: square.color })} deleteSquare={this.props.deleteSquare} />);
    
     return (
         <span className="GridRow">{squares}<br/></span>
