@@ -41,8 +41,12 @@
     "whatwg-fetch": "2.0.3"
   },
   "dependencies": {
+    "immutable": "^3.8.2",
+    "lodash": "^4.17.4",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
   },
   "scripts": {
     "start": "node scripts/start.js",

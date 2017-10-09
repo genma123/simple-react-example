@@ -2,36 +2,27 @@ import React, { Component } from 'react';
 import Status from './Status';
 import Grid from './Grid';
 import './App.css';
-import _ from 'lodash';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-		  squares: [],
-      sequence: 0,
-      status: ""
-    };
+  constructor(props) {
+    super(props);
+
+    // const { appState, addSquare, removeSquare } = props;
 
     this.addSquare = this.addSquare.bind(this);
     this.removeSquare = this.removeSquare.bind(this);
   }
   
-  determineStatus(increment) {
-    let count = this.state.squares.length + increment;
-    return count + " Squares Currently Displayed";
+  addSquare() {
+    this.props.addSquare(this._text.value, this._select.value.toLowerCase(), this.props.appState.get('sequence'));
   }
 
-  addSquare() {
-    const square = { text: this._text.value, color: this._select.value.toLowerCase(), key: this.state.sequence };
-    this.setState({ squares: this.state.squares.concat(square),
-                  sequence: this.state.sequence + 1,
-                  status: this.determineStatus(1)});
+  determineStatus() {
+    return this.props.appState.get('sequence') + " Squares Currently Displayed";
   }
 
   removeSquare(id) {
-     this.setState({ squares: _.filter(this.state.squares, function(t) { return t.key !== id; }),
-                    status: this.determineStatus(-1)});
+    this.props.removeSquare(id);
   }
 
   render() {
@@ -46,8 +37,9 @@ class App extends Component {
                                       <option>Green</option>
                                       <option>Yellow</option>
                               </select></span>
-        <Status message={this.state.status}/>
-        <Grid squares={this.state.squares} deleteSquare={this.removeSquare} />
+        <Status message={this.determineStatus()}/>
+        {/* NOTE 'squares' is an Immutable List, must be converted to raw JavaScript!! */}
+        <Grid squares={this.props.appState.get('squares').toJS()} deleteSquare={this.removeSquare} />
       </div>
     );
   }
