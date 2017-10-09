@@ -13,7 +13,7 @@ export default function(appState, action) {
                 Immutable.fromJS(_.filter(appState.get('squares').toJS(), function(t) { return t.key !== action.payload.id; })));
             return statey.set('sequence', statey.get('sequence') - 1);
         default:
-            return(appState);
+            return appState;
     }
 }
 
